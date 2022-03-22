@@ -6,7 +6,7 @@ pipeline {
        withSonarQubeEnv('sq3') {
          script {
             def scannerHome = tool 'ScannerForMSBuild'
-            sh "dotnet ${scannerHome}/SonarScanner.MSBuild.Common.dll begin /k:\"webapp\" " ;
+            sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"webapp\" " ;
             sh "dotnet build WebApp.sln" ;
             sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end"
 	  }
