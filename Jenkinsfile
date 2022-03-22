@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build And SonarQube analysis') {
       steps {
-	withDotNet() {
+	withDotNet('Net5') {
         withSonarQubeEnv('sq3') {
          script {
             def scannerHome = tool 'ScannerForMSBuild'
