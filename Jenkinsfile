@@ -11,7 +11,7 @@ pipeline {
             // sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end"
             // dotnet tool install --global dotnet-sonarscanner
             sh "dotnet sonarscanner begin /k:\"webapp\""
-            sh "dotnet build <path to solution.sln>"
+            sh "dotnet build WebApp.sln"
             sh "dotnet sonarscanner end"
 	  }
         }
