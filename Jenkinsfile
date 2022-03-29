@@ -7,7 +7,7 @@ pipeline {
          script {
             // def scannerHome = tool 'ScannerForMSBuild'
             // sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"webapp\" " ;
-            sh "dotnet sonarscanner begin /k:"sylvain-combe-sonarsource_webapp"
+            sh "dotnet sonarscanner begin /k:\"sylvain-combe-sonarsource_webapp\""
             sh "dotnet build" ;
             sh "dotnet sonarscanner end"
 	  }
