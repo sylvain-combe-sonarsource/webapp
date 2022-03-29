@@ -8,6 +8,7 @@ pipeline {
             sh "dotnet tool install --global dotnet-sonarscanner || true" ;
             def PATH = '${PATH}:${HOME}/.dotnet/tools'
             def SONARMSBUILD = '${HOME}/Applications/sonar-scanner-msbuild-5.5.3.43281-net5.0'
+            def JAVA_HOME = '/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home'
             sh "dotnet tool list -g" ;
             sh "dotnet --version" ;
             // sh "dotnet sonarscanner begin /k:\"sylvain-combe-sonarsource_webapp\" "
