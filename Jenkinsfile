@@ -13,8 +13,8 @@ pipeline {
             // sh "dotnet sonarscanner begin /k:\"sylvain-combe-sonarsource_webapp\" "
             sh "dotnet ${SONARMSBUILD}/SonarScanner.MSBuild.dll begin /k:\"sylvain-combe-sonarsource_webapp\" " ;
             sh "dotnet build" ;
-            // sh "dotnet ${SONARMSBUILD}/SonarScanner.MSBuild.dll end"
-            sh "dotnet sonarscanner end"
+            sh "dotnet ${SONARMSBUILD}/SonarScanner.MSBuild.dll end"
+            // sh "dotnet sonarscanner end"
 	  }
  	}
       }
