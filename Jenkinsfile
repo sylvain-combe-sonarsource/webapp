@@ -10,8 +10,8 @@ pipeline {
             def SONARMSBUILD = '${HOME}/Applications/sonar-scanner-msbuild-5.5.3.43281-net5.0'
             sh "dotnet tool list -g" ;
             sh "dotnet --version" ;
-            sh "dotnet sonarscanner begin /k:\"sylvain-combe-sonarsource_webapp\" "
-            // sh "dotnet ${SONARMSBUILD}/SonarScanner.MSBuild.dll begin /k:\"sylvain-combe-sonarsource_webapp\" " ;
+            // sh "dotnet sonarscanner begin /k:\"sylvain-combe-sonarsource_webapp\" "
+            sh "dotnet ${SONARMSBUILD}/SonarScanner.MSBuild.dll begin /k:\"sylvain-combe-sonarsource_webapp\" " ;
             sh "dotnet build" ;
             // sh "dotnet ${SONARMSBUILD}/SonarScanner.MSBuild.dll end"
             sh "dotnet sonarscanner end"
