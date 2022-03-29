@@ -11,7 +11,9 @@ pipeline {
     stage('Build And SonarQube analysis') {
       steps {
         script {
-          sh "dotnet tool install --global dotnet-sonarscanner || true" ;
+          sh "apt-get update"
+          sh "apt-get install --yes openjdk-11-jre"
+          sh "dotnet tool install --global dotnet-sonarscanner"
           withSonarQubeEnv('SYCOLATEST') {
             sh "dotnet tool list -g" ;
             sh "dotnet --version" ;
