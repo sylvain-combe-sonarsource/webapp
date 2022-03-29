@@ -18,10 +18,8 @@ pipeline {
 //          sh "dotnet build" ;
 //          sh "dotnet ${SONARMSBUILD}/SonarScanner.MSBuild.dll end"
             // sh "dotnet sonarscanner end"
- 	}
       }
     }
-
     stage("Quality Gate") {
       steps {
         timeout(time: 1, unit: 'HOURS') {
