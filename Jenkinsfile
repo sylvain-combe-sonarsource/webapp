@@ -6,7 +6,7 @@ pipeline {
        withSonarQubeEnv('sq3') {
          script {
             sh "dotnet tool install --global dotnet-sonarscanner || true" ;
-            def PATH = '${PATH}:${HOME}/.dotnet/tools'
+            def PATH = '${PATH}:${HOME}/.dotnet/tools:${HOME}/Applications/sonar-scanner-4.6.2.2472-macosx/bin/'
             def SONARMSBUILD = '${HOME}/Applications/sonar-scanner-msbuild-5.5.3.43281-net5.0'
             def JAVA_HOME = '/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home'
             sh "dotnet tool list -g" ;
