@@ -3,9 +3,8 @@ pipeline {
   stages {
     stage('Build And SonarQube analysis') {
       steps {
-       withSonarQubeEnv('sq3') {
-         script {
-            def scannerHome = tool 'SonarScanner for MSBuild'
+        def scannerHome = tool 'SonarScanner for MSBuild'
+        withSonarQubeEnv('sq3') {
             sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"sylvain-combe-sonarsource_webapp\""
             sh "dotnet build"
             sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end"
@@ -20,7 +19,6 @@ pipeline {
             sh "dotnet build" ;
             sh "dotnet ${SONARMSBUILD}/SonarScanner.MSBuild.dll end"
             // sh "dotnet sonarscanner end"
-	  }
  	}
       }
     }
