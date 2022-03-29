@@ -8,9 +8,7 @@ pipeline {
             // def scannerHome = tool 'ScannerForMSBuild'
             // sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"webapp\" " ;
             sh "dotnet tool install --global dotnet-sonarscanner || true"
-            sh "whoami"
-            sh "echo $PATH"
-            sh "ls ~/.dotnet/tools"
+            sh "export PATH=\"$PATH:$HOME/.dotnet/tools\"
             sh "dotnet --version"
             sh "dotnet sonarscanner begin /k:\"sylvain-combe-sonarsource_webapp\" "
             sh "dotnet build" ;
