@@ -3,16 +3,17 @@ pipeline {
   stages {
     stage('Build And SonarQube analysis') {
       steps {
-        withSonarQubeEnv('sq3') {
-          script {
+        script {
+          def scannerHome = tool 'ScannerForMSBuild'
+          withSonarQubeEnv('sq3') {
             def SONARMSBUILD = '${HOME}/Applications/sonar-scanner-msbuild-5.5.3.43281-net5.0'
             def PATH = '${PATH}:${HOME}/.dotnet/tools:${HOME}/Applications/sonar-scanner-4.6.2.2472-macosx/bin/'
             def JAVA_HOME = '/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home'
             sh "dotnet tool list -g" ;
             sh "dotnet --version" ;
-            sh "dotnet ${SONARMSBUILD}/SonarScanner.MSBuild.dll begin /k:\"sylvain-combe-sonarsource_webapp\""
+            sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"sylvain-combe-sonarsource_webapp\""
             sh "dotnet build"
-            sh "dotnet ${SONARMSBUILD}/SonarScanner.MSBuild.dll end"
+            sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end"
 //          sh "dotnet tool install --global dotnet-sonarscanner || true" ;
 //          sh "dotnet sonarscanner begin /k:\"sylvain-combe-sonarsource_webapp\" "
 //          sh "dotnet build" ;
