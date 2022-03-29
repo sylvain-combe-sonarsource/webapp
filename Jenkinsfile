@@ -7,6 +7,7 @@ pipeline {
          script {
             sh "dotnet tool install --global dotnet-sonarscanner || true" ;
             sh "export PATH=\"$PATH:$HOME/.dotnet/tools\" " ;
+            sh "dotnet tool list -g" ;
             sh "dotnet --version" ;
             sh "dotnet sonarscanner begin /k:\"sylvain-combe-sonarsource_webapp\" "
             sh "dotnet build" ;
