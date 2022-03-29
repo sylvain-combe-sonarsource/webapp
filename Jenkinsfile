@@ -6,7 +6,8 @@ pipeline {
        withSonarQubeEnv('sq3') {
          script {
             sh "dotnet tool install --global dotnet-sonarscanner || true" ;
-            sh "export PATH=\"$PATH:$HOME/.dotnet/tools\" " ;
+            sh "export PATH=$PATH:$HOME/.dotnet/tools" ;
+            sh "export SONARMSBUILD=$HOME/Applications/sonar-scanner-msbuild-5.5.3.43281-net5.0" ;
             sh "dotnet tool list -g" ;
             sh "dotnet --version" ;
             sh "dotnet sonarscanner begin /k:\"sylvain-combe-sonarsource_webapp\" "
