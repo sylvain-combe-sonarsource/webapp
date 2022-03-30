@@ -5,6 +5,7 @@ pipeline {
       steps {
         script {
           def scannerHome = tool name: 'ScannerForMSBuild', type: 'hudson.plugins.sonar.MsBuildSQRunnerInstallation'
+          sh "chmod a+x ${scannerHome}/sonar-scanner*"
           withSonarQubeEnv('SYCOLATEST') {
             sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"sylvain-combe-sonarsource_webapp\""
             sh "dotnet build"
