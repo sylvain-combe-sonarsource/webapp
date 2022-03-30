@@ -5,7 +5,7 @@ pipeline {
       steps {
         script {
           // def scannerHome = tool 'ScannerForMSBuild'
-          def scannerHome = tool 'ScannerForMSBuild', type: 'hudson.plugins.sonar.MsBuildSQRunnerInstallation'
+          def scannerHome = tool name: 'ScannerForMSBuild', type: 'hudson.plugins.sonar.MsBuildSQRunnerInstallation'
           def SONARMSBUILD = '${HOME}/Applications/sonar-scanner-msbuild-5.5.3.43281-net5.0'
           def PATH = '${PATH}:${HOME}/.dotnet/tools:${HOME}/Applications/sonar-scanner-4.6.2.2472-macosx/bin/'
           def JAVA_HOME = '/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home'
