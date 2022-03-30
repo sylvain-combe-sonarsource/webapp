@@ -3,22 +3,17 @@ pipeline {
   stages {
     stage('Build And SonarQube analysis') {
       steps {
-        script {
-          // def scannerHome = tool 'ScannerForMSBuild'
-          // def SONARMSBUILD = '${HOME}/Applications/sonar-scanner-msbuild-5.5.3.43281-net5.0'
-          def PATH = '${PATH}:${HOME}/.dotnet/tools:${HOME}/Applications/sonar-scanner-4.6.2.2472-macosx/bin/'
-          def JAVA_HOME = '/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home'
-          withSonarQubeEnv('SYCOLATEST') {
-            sh "dotnet tool list -g" ;
-            sh "dotnet --version" ;
-            sh "dotnet tool install --global dotnet-sonarscanner || true" ;
-            sh "dotnet sonarscanner begin /k:\"sylvain-combe-sonarsource_webapp\" "
+        withSonarQubeEnv('sq3') {
+         script {
+            def scannerHome = tool name: 'ScannerForMSBuild', type: 'hudson.plugins.sonar.MsBuildSQRunnerInstallation'
+	    sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"webapp\" " ;
             sh "dotnet build" ;
-            sh "dotnet sonarscanner end"
-          }
+            sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end"
+	  }
         }
       }
     }
+
     stage("Quality Gate") {
       steps {
         timeout(time: 1, unit: 'HOURS') {
